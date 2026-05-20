@@ -1,142 +1,494 @@
-# Discord Clone
+# Discord Clone - Real-Time Chat Application
 
-A simplified real-time Discord-style messaging app built with React, Express, Socket.io, MongoDB, JWT, and pure CSS.
+A simplified Discord-style messaging application built as a technical task.  
+The project allows users to create an account, log in, join different chat channels, and send/receive messages in real time.
 
-## Features
+This project was built using **ReactJS**, **ExpressJS**, **MongoDB**, **Socket.io**, **Axios**, and **Pure CSS**.
 
-- User registration and login with JWT authentication
-- Password hashing with bcrypt
-- Protected channel and message API routes
-- Default channels created automatically on first server start
-- Create and join chat channels
-- Fetch existing channel messages
-- Real-time messaging with Socket.io rooms
-- Clean dark chat interface with sidebar, channel list, message feed, input box, and logout
-- Login and register error handling with basic loading states
+---
 
-## Tech Stack
+## 🚀 Project Overview
 
-- Frontend: ReactJS, React Router, Axios, Socket.io Client, Vite
-- Backend: ExpressJS, Socket.io, Mongoose
-- Database: MongoDB
-- Authentication: JWT and bcryptjs
-- Styling: Pure CSS
+This application is a simple real-time chat platform inspired by Discord.  
+It focuses on the core features of a messaging system:
 
-## Folder Structure
+- User registration and login
+- Authentication using JWT
+- Multiple chat channels
+- Real-time message sending and receiving
+- Message storage in MongoDB
+- Simple and user-friendly interface
+
+The goal of this project is to demonstrate how modern web applications handle:
+
+- Real-time communication
+- User authentication
+- Backend API development
+- Database management
+- Frontend and backend integration
+
+---
+
+## ✅ Features
+
+### Authentication
+
+- Create a new account
+- Log in with an existing account
+- Passwords are hashed using bcrypt
+- JWT-based authentication
+- User data stored in MongoDB
+
+### Channels
+
+- Users can view available chat channels
+- Users can join/select different channels
+- Each channel has its own messages
+
+### Real-Time Chat
+
+- Real-time communication using Socket.io
+- Users can send messages instantly
+- Messages appear immediately in the selected channel
+- Messages are saved in MongoDB
+
+### User Interface
+
+- Simple Discord-like layout
+- Sidebar for chat channels
+- Main chat area for messages
+- Message input area
+- Clean responsive design using Pure CSS
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- ReactJS
+- React Router
+- Axios
+- Socket.io Client
+- Pure CSS
+- Vite
+
+### Backend
+
+- Node.js
+- ExpressJS
+- Socket.io
+- MongoDB
+- Mongoose
+- JWT
+- bcryptjs
+- dotenv
+- cors
+
+### Database
+
+- MongoDB Atlas or Local MongoDB
+
+---
+
+## 📁 Folder Structure
 
 ```text
 discord-clone/
+│
 ├── backend/
-│   ├── server.js
-│   ├── package.json
-│   ├── .env.example
 │   ├── config/
 │   │   └── db.js
+│   │
+│   ├── middleware/
+│   │   └── authMiddleware.js
+│   │
 │   ├── models/
 │   │   ├── User.js
 │   │   ├── Channel.js
 │   │   └── Message.js
+│   │
 │   ├── routes/
 │   │   ├── authRoutes.js
 │   │   ├── channelRoutes.js
 │   │   └── messageRoutes.js
-│   └── middleware/
-│       └── authMiddleware.js
-└── frontend/
-    ├── index.html
-    ├── package.json
-    └── src/
-        ├── main.jsx
-        ├── App.jsx
-        ├── api.js
-        ├── socket.js
-        ├── pages/
-        │   ├── Login.jsx
-        │   ├── Register.jsx
-        │   └── Chat.jsx
-        ├── components/
-        │   ├── Sidebar.jsx
-        │   ├── MessageList.jsx
-        │   └── MessageInput.jsx
-        └── styles.css
+│   │
+│   ├── .env
+│   ├── package.json
+│   └── server.js
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Sidebar.jsx
+│   │   │   ├── MessageList.jsx
+│   │   │   └── MessageInput.jsx
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   └── Chat.jsx
+│   │   │
+│   │   ├── api.js
+│   │   ├── socket.js
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── styles.css
+│   │
+│   ├── package.json
+│   └── index.html
+│
+└── README.md
 ```
 
-## Environment Variables
+---
 
-Create a `.env` file inside `backend/`:
+## ⚙️ Environment Variables
+
+Create a `.env` file inside the `backend` folder:
 
 ```env
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/discord_clone
-JWT_SECRET=replace_this_with_a_long_random_secret
+MONGO_URI=mongodb+srv://USERNAME:PASSWORD@cluster0.mongodb.net/discord_clone?retryWrites=true&w=majority
+JWT_SECRET=your_long_secret_key_here
 CLIENT_URL=http://localhost:5173
 ```
 
-Optional frontend environment variables can be placed in `frontend/.env`:
+### Important
 
-```env
-VITE_API_URL=http://localhost:5000/api
-VITE_SOCKET_URL=http://localhost:5000
+Do not upload `.env` to GitHub.
+
+Make sure `.gitignore` includes:
+
+```gitignore
+node_modules
+.env
+dist
 ```
 
-## How To Run Backend
+---
+
+## 🔧 Backend Setup
+
+Go to the backend folder:
 
 ```bash
-cd discord-clone/backend
+cd backend
+```
+
+Install dependencies:
+
+```bash
 npm install
-cp .env.example .env
+```
+
+Run the backend server:
+
+```bash
 npm run dev
 ```
 
-Make sure MongoDB is running locally, or replace `MONGO_URI` with your MongoDB Atlas connection string.
+Expected output:
 
-## How To Run Frontend
+```text
+Server running on port 5000
+MongoDB connected
+```
+
+The backend runs on:
+
+```text
+http://localhost:5000
+```
+
+---
+
+## 🎨 Frontend Setup
+
+Open another terminal and go to the frontend folder:
 
 ```bash
-cd discord-clone/frontend
+cd frontend
+```
+
+Install dependencies:
+
+```bash
 npm install
+```
+
+Run the frontend:
+
+```bash
 npm run dev
 ```
 
-Open the Vite URL shown in the terminal, usually:
+The frontend runs on:
 
 ```text
 http://localhost:5173
 ```
 
-## Demo Instructions
+---
 
-1. Start MongoDB.
-2. Start the backend with `npm run dev`.
-3. Start the frontend with `npm run dev`.
-4. Register a new account.
-5. Open another browser or incognito window and register a second account.
-6. Select the same channel in both windows.
-7. Send messages and watch them appear in real time.
-8. Create a new channel from the sidebar and switch into it.
+## 🔌 API Endpoints
 
-## API Overview
+### Authentication
 
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-- `GET /api/channels`
-- `POST /api/channels`
-- `GET /api/messages/:channelId`
-- `POST /api/messages`
+```http
+POST /api/auth/register
+```
 
-## Socket Events
+Registers a new user.
 
-- `join_channel`
-- `send_message`
-- `receive_message`
+```http
+POST /api/auth/login
+```
 
-## Future Improvements
+Logs in an existing user and returns a JWT token.
 
-- Typing indicators
-- Online user presence
-- Channel member lists
-- Message editing and deletion
-- File uploads
-- Direct messages
-- Role-based permissions
-- Better mobile navigation
+---
+
+### Channels
+
+```http
+GET /api/channels
+```
+
+Returns all available chat channels.
+
+```http
+POST /api/channels
+```
+
+Creates a new chat channel.
+
+---
+
+### Messages
+
+```http
+GET /api/messages/:channelId
+```
+
+Returns all messages for a specific channel.
+
+```http
+POST /api/messages
+```
+
+Creates and stores a new message.
+
+---
+
+## ⚡ Socket.io Events
+
+The real-time chat system uses Socket.io.
+
+### Client joins a channel
+
+```js
+socket.emit("join_channel", channelId);
+```
+
+### Client sends a message
+
+```js
+socket.emit("send_message", messageData);
+```
+
+### Client receives a message
+
+```js
+socket.on("receive_message", (message) => {
+  // display message
+});
+```
+
+---
+
+## 🧠 How It Works
+
+1. The user creates an account or logs in.
+2. The backend validates the user and returns a JWT token.
+3. The token is stored in localStorage.
+4. The user is redirected to the chat page.
+5. The frontend loads available channels from the backend.
+6. When the user selects a channel:
+   - Old messages are fetched from MongoDB.
+   - The user joins the Socket.io room for that channel.
+7. When a message is sent:
+   - The frontend sends it through Socket.io.
+   - The backend saves it in MongoDB.
+   - The backend emits the message to all users in the same channel.
+8. The message appears in real time without refreshing the page.
+
+---
+
+## 🧪 Testing the App
+
+To test the real-time functionality:
+
+1. Run the backend.
+2. Run the frontend.
+3. Open the app in one browser window.
+4. Register or log in with one account.
+5. Open the app in another browser or incognito window.
+6. Register or log in with another account.
+7. Join the same channel.
+8. Send a message from one account.
+9. The message should appear instantly for the other user.
+
+---
+
+## 🌐 Deployment Notes
+
+The project can be deployed using:
+
+- **Frontend:** Vercel
+- **Backend:** Render or Railway
+- **Database:** MongoDB Atlas
+
+### Why not deploy the full project only on Vercel?
+
+Vercel is great for deploying the React frontend, but the backend uses **ExpressJS + Socket.io**.  
+Socket.io needs a long-running server for WebSocket connections, so it is better to host the backend on a service like **Render** or **Railway**.
+
+Recommended deployment structure:
+
+```text
+React Frontend   → Vercel
+Express Backend  → Render / Railway
+MongoDB Database → MongoDB Atlas
+```
+
+---
+
+## 🌍 Frontend Environment Variables for Deployment
+
+For Vercel, create environment variables like:
+
+```env
+VITE_API_URL=https://your-backend-url.onrender.com/api
+VITE_SOCKET_URL=https://your-backend-url.onrender.com
+```
+
+Example frontend API setup:
+
+```js
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
+});
+
+export default api;
+```
+
+Example Socket.io setup:
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io(import.meta.env.VITE_SOCKET_URL || "http://localhost:5000");
+
+export default socket;
+```
+
+---
+
+## 📹 Demo Video Requirements
+
+For the project submission, a short demo video should show:
+
+1. Opening the application.
+2. Creating a new account.
+3. Logging in.
+4. Viewing available channels.
+5. Joining/selecting a channel.
+6. Sending a message.
+7. Opening another browser or incognito window.
+8. Logging in with another user.
+9. Showing real-time message receiving.
+10. Briefly explaining the tech stack.
+
+---
+
+## 🎙️ Suggested Demo Script
+
+```text
+Hello, my name is Nimer Asaad.
+
+This is my simplified Discord Clone project built using ReactJS, ExpressJS, MongoDB, Axios, Socket.io, and Pure CSS.
+
+First, I will create a new account.
+Then I will log in using the created account.
+
+After login, the user is redirected to the chat page.
+On the left side, we can see different chat channels.
+
+When I click on a channel, the app loads the old messages from MongoDB.
+The user can send a new message using the input box.
+
+The real-time chat is handled using Socket.io.
+When a message is sent, it is saved in MongoDB and emitted immediately to users inside the same channel.
+
+The backend handles authentication, channels, messages, and Socket.io events.
+The frontend provides a simple Discord-like interface with a sidebar, message area, and message input.
+
+Thank you.
+```
+
+---
+
+## 🔐 Security Notes
+
+- User passwords are hashed before being saved.
+- JWT is used for authentication.
+- Environment variables are used for sensitive data.
+- `.env` should not be pushed to GitHub.
+- MongoDB credentials should be kept private.
+- If database credentials are exposed, the password should be changed immediately from MongoDB Atlas.
+
+---
+
+## 🚧 Future Improvements
+
+Possible future improvements:
+
+- Add user avatars
+- Add typing indicator
+- Add online/offline user status
+- Add private direct messages
+- Add message delete/edit feature
+- Add file/image sharing
+- Add admin roles
+- Improve responsive design
+- Add email verification
+- Add password reset
+- Deploy backend and frontend fully online
+
+---
+
+## 👨‍💻 Developer
+
+**Nimer Ziad Asaad**
+
+Computer Engineering student interested in software development, AI systems, DevOps, Linux, Docker, Git, and real-time web applications.
+
+- GitHub: https://github.com/Nimer-Asaad
+- Portfolio: https://linkin1.com/nimerziad46
+- Email: nimerziad46@gmail.com
+
+---
+
+## 📌 Submission
+
+This project was created for a technical task requiring:
+
+- Account creation and login
+- Joining different chat channels
+- Sending and receiving messages in real time
+- A simple and user-friendly interface
+- Using ReactJS, ExpressJS, Axios, Socket.io, MongoDB, and Pure CSS
+- Providing a public demo video URL
