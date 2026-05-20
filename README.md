@@ -198,7 +198,7 @@ MongoDB connected
 The backend runs on:
 
 ```text
-http://localhost:5000
+http://localhost:8000
 ```
 
 ---
@@ -379,7 +379,7 @@ Example frontend API setup:
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8000/api",
 });
 
 export default api;
@@ -390,7 +390,7 @@ Example Socket.io setup:
 ```js
 import { io } from "socket.io-client";
 
-const socket = io(import.meta.env.VITE_SOCKET_URL || "http://localhost:5000");
+const socket = io(import.meta.env.VITE_SOCKET_URL || "http://localhost:8000");
 
 export default socket;
 ```
